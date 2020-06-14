@@ -1,0 +1,46 @@
+Program Block Decls Decl Type Stmts Stmt Loc Bool Join Equality Rel Expr Term Unary Factor //// { } [ ] ( ) __ id ; num basic = if else while do break /|/| && == != < <= >= > + - * / ! num real true false
+Program ==> Block
+Block ==> { Decls Stmts }
+Decls ==> Decls Decl
+Decls ==> __
+Decl ==> Type id ;
+Type ==> Type [ num ]
+Type ==> basic
+Stmts ==> Stmts Stmt
+Stmts ==> __
+Stmt ==> Loc = Bool ;
+Stmt ==> if ( Bool ) Stmt
+Stmt ==> if ( Bool ) Stmt else Stmt
+Stmt ==> while ( Bool ) Stmt
+Stmt ==> do Stmt while ( Bool ) ;
+Stmt ==> break ;
+Stmt ==> Block
+Loc ==> Loc [ Bool ]
+Loc ==> id
+Bool ==> Bool /|/| Join
+Bool ==> Join
+Join ==> Join && Equality
+Join ==> Equality
+Equality ==> Equality == Rel
+Equality ==> Equality != Rel
+Equality ==> Rel
+Rel ==> Expr < Expr
+Rel ==> Expr <= Expr
+Rel ==> Expr >= Expr
+Rel ==> Expr > Expr
+Rel ==> Expr
+Expr ==> Expr + Term
+Expr ==> Expr - Term
+Expr ==> Term
+Term ==> Term * Unary
+Term ==> Term / Unary
+Term ==> Unary
+Unary ==> ! Unary
+Unary ==> - Unary
+Unary ==> Factor
+Factor ==> ( Bool )
+Factor ==> Loc
+Factor ==> num
+Factor ==> real
+Factor ==> true
+Factor ==> false
